@@ -23,5 +23,8 @@ Pod::Spec.new do |s|
     
     # Third Party Dependencies
    sp.source_files = 'GoogleReCaptcha/**/*.{swift}'
+   sp.resource_bundles = {
+      'GoogleReCaptcha' => "GoogleReCaptcha/*.html"
+    }
   end
 end
