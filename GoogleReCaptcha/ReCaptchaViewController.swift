@@ -41,7 +41,7 @@ public final class ReCaptchaViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .close,
+            barButtonSystemItem: .cancel,
             target: self,
             action: #selector(didSelectCloseButton)
         )
