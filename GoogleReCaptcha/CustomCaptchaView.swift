@@ -42,7 +42,7 @@ import UIKit
     }
     
     @IBInspectable public var applyShadow: Bool = true
-    @IBInspectable public var isStrikethrough: Bool = true
+    @IBInspectable public var isStrikeThrough: Bool = true
     
     // MARK: - Initializations
     public override init(frame: CGRect) {
@@ -103,7 +103,7 @@ import UIKit
             attributed.addAttribute(NSAttributedString.Key.shadow, value: shadow, range: NSMakeRange(0,attributed.length))
         }
         
-        if isStrikethrough {
+        if isStrikeThrough {
             attributed.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributed.length))
         }
         
