@@ -132,7 +132,7 @@ import UIKit
     private static let bundle: Bundle = {
         let bundle = Bundle(for: CustomCaptchaView.self)
         guard let cocoapodsBundle = bundle
-                .path(forResource: "CustomCaptchaView", ofType: "bundle")
+                .path(forResource: "GoogleReCaptcha", ofType: "bundle")
                 .flatMap(Bundle.init(path:)) else {
                     return bundle
                 }
