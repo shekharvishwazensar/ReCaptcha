@@ -16,10 +16,65 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQZ-az-28M" customClass="CustomCaptchaView" customModule="GoogleReCaptcha">
+                                <rect key="frame" x="94" y="101" width="226" height="81"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="226" id="Jky-bh-HIg"/>
+                                    <constraint firstAttribute="height" constant="81" id="SC0-IH-XnZ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="captchaLength">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="kerningSpace">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="applyShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isStrikethrough" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re6-cc-LDW">
+                                <rect key="frame" x="124" y="207" width="166" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="3wM-tr-MVW"/>
+                                    <constraint firstAttribute="width" constant="166" id="fj8-yQ-F3q"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Reload"/>
+                                <connections>
+                                    <action selector="btnReload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x1Q-hW-wgC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vt7-ya-AE8">
+                                <rect key="frame" x="116" y="613" width="182" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="182" id="1IE-tT-34g"/>
+                                    <constraint firstAttribute="height" constant="49" id="Apd-fd-Av7"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Google Captcha"/>
+                                <connections>
+                                    <action selector="btngoogleCaptcha:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dSp-sU-xko"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="re6-cc-LDW" firstAttribute="top" secondItem="tQZ-az-28M" secondAttribute="bottom" constant="25" id="7LI-qT-ki1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vt7-ya-AE8" secondAttribute="bottom" constant="200" id="Omt-sn-oWh"/>
+                            <constraint firstItem="Vt7-ya-AE8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PR5-IQ-lSI"/>
+                            <constraint firstItem="tQZ-az-28M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="Tur-gS-rME"/>
+                            <constraint firstItem="tQZ-az-28M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eQa-6k-uYU"/>
+                            <constraint firstItem="re6-cc-LDW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hdY-7L-kxZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9rJ-lB-Uje"/>
+                    <connections>
+                        <outlet property="captchaView" destination="tQZ-az-28M" id="0y0-RQ-Oz7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,6 +101,9 @@
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>

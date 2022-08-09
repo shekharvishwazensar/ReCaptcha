@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCaptchaView" customModule="GoogleReCaptcha">
+            <connections>
+                <outlet property="CaptchaLabel" destination="Zlq-5n-yJg" id="nzi-cU-gUQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" interfaceStyle="light" translatesAutoresizingMaskIntoConstraints="NO" id="bne-yd-xx4">
+            <rect key="frame" x="0.0" y="0.0" width="527" height="325"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlq-5n-yJg">
+                    <rect key="frame" x="10" y="10" width="507" height="305"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Zlq-5n-yJg" secondAttribute="bottom" constant="10" id="DSG-Er-36j"/>
+                <constraint firstAttribute="trailing" secondItem="Zlq-5n-yJg" secondAttribute="trailing" constant="10" id="bEC-Mt-cyq"/>
+                <constraint firstItem="Zlq-5n-yJg" firstAttribute="leading" secondItem="bne-yd-xx4" secondAttribute="leading" constant="10" id="hwg-Yk-YCU"/>
+                <constraint firstItem="Zlq-5n-yJg" firstAttribute="top" secondItem="bne-yd-xx4" secondAttribute="top" constant="10" id="pQS-Jt-JMP"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-177.536231884058" y="-701.45089285714278"/>
+        </view>
+    </objects>
+</document>

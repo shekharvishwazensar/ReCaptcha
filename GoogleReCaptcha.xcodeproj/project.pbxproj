@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BDAB086E289D87E000708203 /* CustomCaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB086D289D87E000708203 /* CustomCaptchaView.swift */; };
+		BDAB0870289D881100708203 /* CustomCaptchaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDAB086F289D881100708203 /* CustomCaptchaView.xib */; };
 		BDABF8E4289BC83C003F65B9 /* ReCaptcha.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BDABF8E3289BC83C003F65B9 /* ReCaptcha.podspec */; };
 		BDD0087128996F7600E31E9F /* ReCaptchaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD0087028996F7600E31E9F /* ReCaptchaViewController.swift */; };
 		BDD0087328996FA400E31E9F /* ReCaptchaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD0087228996FA400E31E9F /* ReCaptchaViewModel.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BDAB086D289D87E000708203 /* CustomCaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCaptchaView.swift; sourceTree = "<group>"; };
+		BDAB086F289D881100708203 /* CustomCaptchaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCaptchaView.xib; sourceTree = "<group>"; };
 		BDABF8E3289BC83C003F65B9 /* ReCaptcha.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReCaptcha.podspec; sourceTree = "<group>"; };
 		BDD0085828996F2900E31E9F /* GoogleReCaptcha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleReCaptcha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD0087028996F7600E31E9F /* ReCaptchaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptchaViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				BDD0087028996F7600E31E9F /* ReCaptchaViewController.swift */,
 				BDD0087228996FA400E31E9F /* ReCaptchaViewModel.swift */,
 				BDD0089F2899869100E31E9F /* recaptcha.html */,
+				BDAB086D289D87E000708203 /* CustomCaptchaView.swift */,
+				BDAB086F289D881100708203 /* CustomCaptchaView.xib */,
 			);
 			path = GoogleReCaptcha;
 			sourceTree = "<group>";
@@ -224,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDAB0870289D881100708203 /* CustomCaptchaView.xib in Resources */,
 				BDABF8E4289BC83C003F65B9 /* ReCaptcha.podspec in Resources */,
 				BDD008A02899869100E31E9F /* recaptcha.html in Resources */,
 			);
@@ -246,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDAB086E289D87E000708203 /* CustomCaptchaView.swift in Sources */,
 				BDD0087328996FA400E31E9F /* ReCaptchaViewModel.swift in Sources */,
 				BDD0087128996F7600E31E9F /* ReCaptchaViewController.swift in Sources */,
 			);
