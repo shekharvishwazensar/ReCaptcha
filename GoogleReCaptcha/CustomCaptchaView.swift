@@ -8,41 +8,30 @@
 import Foundation
 import UIKit
 
+public protocol GeneratedCaptchaProtocol: AnyObject{
+    func generatedCaptcha(captcha: String)
+}
+
 @IBDesignable public class CustomCaptchaView: UIView {
     
     // MARK: - UI Components
     @IBOutlet weak var CaptchaLabel: UILabel!
     
     // MARK: - Properties
-    var charLength: Int = 5
-    var kern: Int = 0
+    public weak var delegate: GeneratedCaptchaProtocol?
     
     public var text: NSAttributedString? {
         didSet {
             CaptchaLabel.attributedText = text
         }
     }
+    public var textColors: [UIColor] = [.magenta, .blue, .black, .cyan, .darkText]
+    public var textFonts: [UIFont]  = [UIFont.systemFont(ofSize: 20)]
     
-    @IBInspectable public var captchaLength: Int {
-        get {
-            return charLength
-        }
-        set {
-            charLength = newValue
-        }
-    }
-    
-    @IBInspectable public var kerningSpace: Int {
-        get {
-            return kern
-        }
-        set {
-            kern = newValue
-        }
-    }
-    
+    @IBInspectable public var captchaLength: Int = 5
+    @IBInspectable public var kerningSpace: Int = 0
     @IBInspectable public var applyShadow: Bool = true
-    @IBInspectable public var isStrikeThrough: Bool = true
+    @IBInspectable public var isStrikeThrough: Bool = false
     
     // MARK: - Initializations
     public override init(frame: CGRect) {
@@ -59,62 +48,10 @@ import UIKit
         super.prepareForInterfaceBuilder()
         loadFromXib()
     }
-        
+    
     // MARK: - Methods
-    private func randomString(length: Int, captchaType: String) -> String {
-        return String((0..<length).map{ _ in captchaType.randomElement()! })
-    }
-    
-    var attributedKeys: [NSAttributedString.Key: Any] {
-        [NSAttributedString.Key.font: randomFont(), NSAttributedString.Key.foregroundColor: randomColor()]
-    }
-    
-    func random() -> CGFloat {
-        return CGFloat(arc4random()) / CGFloat(UInt32.max)
-    }
-    
-    func randomColor() -> UIColor {
-        let colors: [UIColor] = [.magenta, .blue, .black, .cyan, .darkText]
-        return colors.randomElement() ?? UIColor.black
-    }
-    
-    func randomFont() -> UIFont {
-        let fonts = [UIFont.systemFont(ofSize: 20),
-                     UIFont.init(name: "Bradley Hand", size: 25)!,
-                     UIFont.init(name: "Chalkboard SE", size: 22)!,
-                     UIFont.init(name: "Times New Roman", size: 24)!
-        ]
-        
-        return fonts.randomElement()!
-    }
-    
-    public func generateCaptcha(captchaType: CaptchaType) {
-        let captcha = randomString(length: charLength, captchaType: captchaType.selectedCaptcha())
-        let attributed = NSMutableAttributedString(string: captcha)
-        
-        for i in 0...charLength - 1 {
-            attributed.addAttributes(attributedKeys, range: NSRange(location: i, length: 1))
-        }
-        
-        if applyShadow {
-            let shadow = NSShadow()
-            shadow.shadowColor = UIColor.gray
-            shadow.shadowBlurRadius = 5
-            attributed.addAttribute(NSAttributedString.Key.shadow, value: shadow, range: NSMakeRange(0,attributed.length))
-        }
-        
-        if isStrikeThrough {
-            attributed.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributed.length))
-        }
-        
-        attributed.addAttribute(NSAttributedString.Key.kern, value: kern, range: NSRange(location: 0, length: charLength))
-        
-        
-        text = attributed
-    }
-    
     private func loadFromXib() {
-        let nib = UINib(nibName: "CustomCaptchaView", bundle: CustomCaptchaView.bundle)
+        let nib = UINib(nibName: "CustomCaptchaView", bundle: LoadBundle.bundle(view: CustomCaptchaView.self))
         guard let customCaptchaView = nib.instantiate(withOwner: self).first as? UIView else { return }
         addSubview(customCaptchaView)
         
@@ -129,28 +66,60 @@ import UIKit
         ])
     }
     
-    private static let bundle: Bundle = {
-        let bundle = Bundle(for: CustomCaptchaView.self)
-        guard let cocoapodsBundle = bundle
-                .path(forResource: "GoogleReCaptcha", ofType: "bundle")
-                .flatMap(Bundle.init(path:)) else {
-                    return bundle
-                }
-        
-        return cocoapodsBundle
-    }()
-}
-
-public enum CaptchaType: String {
-    case numeric
-    case alphaNumeric
+    private func randomString(length: Int, captchaType: String) -> String {
+        return String((0..<length).map{ _ in captchaType.randomElement()! })
+    }
     
-    func selectedCaptcha() -> String {
-        switch self {
-        case .numeric:
-           return "0123456789"
-        case .alphaNumeric:
-           return "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ0123456789"
+    private var attributedKeys: [NSAttributedString.Key: Any] {
+        [NSAttributedString.Key.font: randomFont(), NSAttributedString.Key.foregroundColor: randomColor()]
+    }
+    
+    private func randomColor() -> UIColor {
+        return textColors.randomElement() ?? UIColor.black
+    }
+    
+    private func randomFont() -> UIFont {
+        return textFonts.randomElement()!
+    }
+    
+    public func generateCaptcha(captchaType: CaptchaType) {
+        
+        switch captchaType {
+        case .expression:
+            let randomOperation = randomString(length: 1, captchaType: captchaType.selectedCaptcha())
+            let objCaptchaExpression = CaptchaExpression()
+            let result = objCaptchaExpression.generateExpression(type: randomOperation)
+            captchaLength = result.question.count
+            text = generateAttributeString(captcha: result.question)
+            delegate?.generatedCaptcha(captcha: "\(result.answer)")
+        default:
+            let captcha = randomString(length: captchaLength, captchaType: captchaType.selectedCaptcha())
+            text = generateAttributeString(captcha: captcha)
+            delegate?.generatedCaptcha(captcha: text?.string ?? "")
         }
     }
+    
+    func generateAttributeString(captcha: String) -> NSAttributedString {
+        let attributed = NSMutableAttributedString(string: captcha)
+        
+        for i in 0...captchaLength - 1 {
+            attributed.addAttributes(attributedKeys, range: NSRange(location: i, length: 1))
+        }
+        
+        if applyShadow {
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.gray
+            shadow.shadowBlurRadius = 5
+            attributed.addAttribute(NSAttributedString.Key.shadow, value: shadow, range: NSMakeRange(0,attributed.length))
+        }
+        
+        if isStrikeThrough {
+            attributed.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributed.length))
+        }
+        
+        attributed.addAttribute(NSAttributedString.Key.kern, value: kerningSpace, range: NSRange(location: 0, length: captchaLength))
+        
+        return attributed
+    }
+    
 }

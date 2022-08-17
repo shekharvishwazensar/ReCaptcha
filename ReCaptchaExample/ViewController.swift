@@ -8,14 +8,9 @@
 import UIKit
 import GoogleReCaptcha
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController, GeneratedCaptchaProtocol {
     @IBOutlet weak var captchaView: CustomCaptchaView!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        captchaView.generateCaptcha(captchaType: .numeric)
-    }
-    
+   
     override func loadView() {
         super.loadView()
         print("loadview")
@@ -23,11 +18,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        captchaView.textColors = [.red, .brown]
+        captchaView.textFonts =  [UIFont.systemFont(ofSize: 20),
+                                  UIFont.init(name: "Bradley Hand", size: 25)!,
+                                  UIFont.init(name: "Chalkboard SE", size: 22)!,
+                                  UIFont.init(name: "Times New Roman", size: 24)!
+        ]
+        captchaView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        captchaView.generateCaptcha(captchaType: .expression)
     }
     
     @IBAction func btnReload(_ sender: UIButton) {
-        captchaView.generateCaptcha(captchaType: .alphaNumeric)
-        print(captchaView.text?.string)
+        captchaView.generateCaptcha(captchaType: .expression)
+//        print(captchaView.text?.string)
     }
     
     @IBAction func btngoogleCaptcha(_ sender: UIButton) {
@@ -48,6 +54,10 @@ class ViewController: UIViewController {
         //        reCaptchaViewModel = viewModel
         
         present(navigationController, animated: true)
+    }
+    
+    func generatedCaptcha(captcha: String) {
+        print(captcha)
     }
 }
 // MARK: - ReCAPTCHAViewModelDelegate

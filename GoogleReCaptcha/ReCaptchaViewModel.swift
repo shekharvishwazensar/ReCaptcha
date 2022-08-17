@@ -12,25 +12,18 @@ public protocol ReCaptchaViewModelDelegate: AnyObject {
 }
 
 public final class ReCaptchaViewModel: NSObject {
+    // MARK: - Properties
     public weak var delegate: ReCaptchaViewModelDelegate?
-    
-    private static let bundle: Bundle = {
-        let bundle = Bundle(for: ReCaptchaViewModel.self)
-        guard let cocoapodsBundle = bundle
-                .path(forResource: "GoogleReCaptcha", ofType: "bundle")
-                .flatMap(Bundle.init(path:)) else {
-                    return bundle
-                }
         
-        return cocoapodsBundle
-    }()
-    
     var html: String {
-
-        guard let fileURL = ReCaptchaViewModel.bundle.url(forResource: "recaptcha", withExtension: "html") else {
-            assertionFailure("Unable to find the resource.")
-            return ""
-        }
+        guard let fileURL = LoadBundle.bundle(view: ReCaptchaViewModel.self)
+                .url(
+                    forResource: "recaptcha",
+                    withExtension: "html"
+                ) else {
+                    assertionFailure("Unable to find the resource.")
+                    return ""
+                }
         
         let filePath = try! String(contentsOf: fileURL, encoding: .utf8)
         return parse(filePath, with: ["siteKey": siteKey])
@@ -75,4 +68,3 @@ private extension ReCaptchaViewModel {
         return parsedString
     }
 }
-

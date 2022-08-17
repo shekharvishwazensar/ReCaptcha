@@ -26,13 +26,17 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="captchaLength">
-                                        <integer key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="kerningSpace">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="applyShadow" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="kerningSpace">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="applyShadow" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isStrikethrough" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isStrikeThrough" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="charLength">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re6-cc-LDW">
@@ -78,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="78.348214285714278"/>
+            <point key="canvasLocation" x="793" y="78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="erM-Pj-ehY">
