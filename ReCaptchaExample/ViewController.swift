@@ -8,7 +8,7 @@
 import UIKit
 import GoogleReCaptcha
 
-class ViewController: UIViewController, GeneratedCaptchaProtocol {
+class ViewController: UIViewController, GeneratedCaptchaDelegate {
     @IBOutlet weak var captchaView: CustomCaptchaView!
    
     override func loadView() {

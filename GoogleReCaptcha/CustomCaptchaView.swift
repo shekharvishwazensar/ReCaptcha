@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol GeneratedCaptchaProtocol: AnyObject{
+public protocol GeneratedCaptchaDelegate: AnyObject{
     func generatedCaptcha(captcha: String)
 }
 
@@ -18,7 +18,7 @@ public protocol GeneratedCaptchaProtocol: AnyObject{
     @IBOutlet weak var CaptchaLabel: UILabel!
     
     // MARK: - Properties
-    public weak var delegate: GeneratedCaptchaProtocol?
+    public weak var delegate: GeneratedCaptchaDelegate?
     
     public var text: NSAttributedString? {
         didSet {
